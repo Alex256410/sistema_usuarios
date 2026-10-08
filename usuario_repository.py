@@ -14,7 +14,6 @@ class UsuarioRepository:
         self.cursor.execute(sql_usuario,(usuario.nombre, usuario.email))
         self.conexion.commit()
         
-        
-        
-        
-        
+    def cerrar_base(self):
+        self.cursor.close()
+        self.conexion.close()
