@@ -7,11 +7,11 @@ class UsuarioRepository:
     
     def guardar(self,usuario):
         sql_usuario = '''
-        INSERT INTO usuarios(nombre, email) 
-        VALUES(%s, %s)
+        INSERT INTO usuarios(nombre, email, edad, contrasena) 
+        VALUES(%s, %s, %s, %s)
         '''
         
-        self.cursor.execute(sql_usuario,(usuario.nombre, usuario.email))
+        self.cursor.execute(sql_usuario,(usuario.nombre, usuario.email, usuario.edad, usuario.contrasena))
         self.conexion.commit()
         
     def cerrar_base(self):
