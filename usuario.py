@@ -26,3 +26,14 @@ class Usuario:
             raise ValueError('\nDebe escribir un nombre\n')
         
         self._nombre = new_nombre
+        
+    @property
+    def contrasena(self):
+        return self._contrasena
+    
+    @contrasena.setter
+    def contrasena(self, new_contrasena):
+        if new_contrasena is None or len(new_contrasena) < 8:
+            raise ValueError('La contraseña debe tener minimo 8 caracteres')
+        
+        self._contrasena = new_contrasena
