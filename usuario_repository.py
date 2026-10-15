@@ -14,6 +14,17 @@ class UsuarioRepository:
         resultado = self.cursor.fetchone()
         
         return bool(resultado)
+    
+   
+    def buscar_email(self,email):
+        sql_email = '''
+        SELECT * FROM usuarios WHERE email = %s
+        '''
+        
+        self.cursor.execute(sql_email,(email,))
+        resultado = self.cursor.fetchone()
+        
+        return resultado
         
     
     def guardar(self,usuario, contrasena_hash):

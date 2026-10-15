@@ -11,7 +11,8 @@ print('=' * 20 + '\n')
 
 while True:
     print('1. Registrar usuario')
-    print('2. Salir\n')
+    print('2. Iniciar sesion')
+    print('3. Salir\n')
     
     opcion = input('\nElige una de las 2 opciones: ').strip()
     
@@ -20,7 +21,7 @@ while True:
             nombre = input('\nIngrese nombre: ').strip().capitalize()
             email = input('Ingrese email: ').strip().lower()
             edad = int(input('Ingrese su edad: '))
-            contrasena = input('Ingrese contraseña: ').strip()
+            contrasena = input('Ingrese contraseña: ')
             
             usuario = Usuario(nombre, email, edad, contrasena)
             servicio.registrar_usuario(usuario)
@@ -28,8 +29,21 @@ while True:
          
         except ValueError as e:
             print(e)
-         
+            
     elif opcion == '2':
+        try:
+            print('\nInicie sesion aqui\n')
+            email = input('Ingrese su email: ')
+            contrasena = input('Ingrese su contrasena: ')
+            
+            resultado = servicio.iniciar_sesion(email,contrasena)
+            
+            print(resultado)
+        
+        except ValueError as e:
+            print(e)
+         
+    elif opcion == '3':
         repositorio.cerrar_base()
         print('Saliendo del programa...')
         print('Fin.')
