@@ -5,6 +5,17 @@ class UsuarioRepository:
         self.conexion = conectar()
         self.cursor = self.conexion.cursor()
         
+    def lista_usuarios(self):
+        sql_lista = '''
+            SELECT * FROM usuarios
+            '''
+            
+        self.cursor.execute(sql_lista,)
+        resultado = self.cursor.fetchall()
+        
+        return resultado
+               
+        
     def existe_email(self, email):
         sql_email = '''
         SELECT id FROM usuarios WHERE email = %s

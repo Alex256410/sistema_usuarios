@@ -1,6 +1,7 @@
 from usuario import Usuario
 from usuario_repository import UsuarioRepository
 from usuario_services import UsuarioServices
+import textwrap
 
 repositorio = UsuarioRepository()
 servicio = UsuarioServices(repositorio)
@@ -12,7 +13,8 @@ print('=' * 20 + '\n')
 while True:
     print('1. Registrar usuario')
     print('2. Iniciar sesion')
-    print('3. Salir\n')
+    print('3. Lista de usuarios')
+    print('4. Salir\n')
     
     opcion = input('\nElige una de las 2 opciones: ').strip()
     
@@ -42,8 +44,23 @@ while True:
         
         except ValueError as e:
             print(e)
-         
+            
     elif opcion == '3':
+        print('\nLista de usuarios\n')
+        lista = UsuarioRepository()
+        resultado = lista.lista_usuarios()
+        
+        for user in resultado:
+            texto = f'''
+                ID: {user[0]}
+                Nombre: {user[1]}
+                Email: {user[2]}
+                Edad: {user[3]}
+                '''
+                
+            print(textwrap.dedent(texto))
+         
+    elif opcion == '4':
         repositorio.cerrar_base()
         print('Saliendo del programa...')
         print('Fin.')
